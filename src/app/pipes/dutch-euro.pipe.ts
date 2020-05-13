@@ -8,7 +8,9 @@ export class DutchEuroPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
     const currencyPipe = new CurrencyPipe('nl');
-    return currencyPipe.transform(value , 'EUR');
+    const result = currencyPipe.transform(value , 'EUR');
+    const result2 = result.split(',');
+    return result2[0];
   }
 
 }

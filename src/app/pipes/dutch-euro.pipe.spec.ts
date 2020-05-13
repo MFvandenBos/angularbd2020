@@ -18,10 +18,10 @@ describe('DutchEuroPipe', () => {
   it('should format a whole number prefixed with an euro sign', () => {
 
     const pipe = new DutchEuroPipe();
+    // \u00A0 is een non breaking space
+    const euroSignPlusNonBreakableSpace = '\u20AC\u00A0';
 
-    const euroSignPlusSpace = '\u20AC' + ' ';
-
-    expect(pipe.transform(123)).toEqual(euroSignPlusSpace + '123');
+    expect(pipe.transform(123)).toEqual(euroSignPlusNonBreakableSpace + '123');
   });
 });
 
