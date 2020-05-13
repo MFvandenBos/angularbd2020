@@ -6,8 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngbd2020';
+  title = 'ngBD2020';
   isNotVisible = true;
+  nu = new Date();
+
   locaties = [
     {stad: 'Adam', land: 'Nederland'},
     {stad: 'Edam', land: 'Nederland'},

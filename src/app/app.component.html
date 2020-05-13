@@ -1,9 +1,22 @@
+<p>
+  Lowercase = {{title | lowercase }}
+</p>
 
-
-<h1>{{title}}</h1>
-<p [hidden]="isNotVisible">Hidden tekst</p>
-<button (click)="printNaarConsole()" >Print on the console</button>
-<ul>
- <!-- <li>{{steden[0].stad}}  {{steden[0].land}}</li> -->
-  <li *ngFor="let locatie of locaties">{{locatie.stad}} {{locatie.land}} </li>
-</ul>
+<p>
+  Uppercase = {{title | uppercase }}
+</p>
+<p>
+  Titlecase = {{title | titlecase }}
+</p>
+<p>
+  Nu {{nu | date }}
+</p>
+<p>
+  Nu {{nu | date : 'd MMMM yyyy: HH:mm:ss'}}
+</p>
+<p>
+  Nu {{nu | date }}
+</p>
+<p>
+  Prijs in dutch euros {{bedrag | dutchEuro }}
+</p>
