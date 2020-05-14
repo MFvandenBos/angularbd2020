@@ -1,22 +1,22 @@
-<p>
-  Lowercase = {{title | lowercase }}
-</p>
+<!-- Model-Driven of ook wel Reactive Form aanpak -->
 
-<p>
-  Uppercase = {{title | uppercase }}
-</p>
-<p>
-  Titlecase = {{title | titlecase }}
-</p>
-<p>
-  Nu {{nu | date }}
-</p>
-<p>
-  Nu {{nu | date : 'd MMMM yyyy: HH:mm:ss'}}
-</p>
-<p>
-  Nu {{nu | date }}
-</p>
-<p>
-  Prijs in dutch euros {{bedrag | dutchEuro }}
-</p>
+<form [formGroup]="reactiveFormGroup">
+  <ol>
+    <li>
+      <label for="naam-input">Naam framework</label>
+      <input type="text" id="naam-input" formControlName="naam">
+    </li>
+    <li>
+      <label for="score-input">Score</label>
+      <input type="text" id="score-input" formControlName="score">
+    </li>
+    <li>
+      <label for="logoUrl-input">Url logo</label>
+      <input type="text" id="logoUrl-input" formControlName="logoUrl">
+    </li>
+    <li>
+      <button (click)="addFramework()">Add Framework</button>
+    </li>
+  </ol>
+</form>
+{{structureReactiveFormGroup | json}}

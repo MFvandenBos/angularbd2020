@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
-
+import {FormControl, FormGroup} from '@angular/forms';
+import {Framework} from './model/framework';
+import * as util from 'util';
 @Component({
   selector: 'app-my',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngBD2020';
-  isNotVisible = true;
-  nu = new Date();
 
-  locaties = [
-    {stad: 'Adam', land: 'Nederland'},
-    {stad: 'Edam', land: 'Nederland'},
-    {stad: 'Obdam', land: 'Nederland'},
-  ];
-  // [] initialiseer je een array in ts/js
-  bedrag: number;
-  printNaarConsole() {
-    console.log('Hello Angular!');
+  frameworks: Framework[] = [];
+  structureReactiveFormGroup: any;
+
+  reactiveFormGroup = new FormGroup({
+      naam: new FormControl(''),
+      score: new FormControl(''),
+      logoUrl: new FormControl('')
+  });
+
+
+  addFramework() {
+      this.structureReactiveFormGroup = util.inspect(this.reactiveFormGroup.value, {depth: 1});
   }
-
 }
