@@ -1,17 +1,35 @@
 <!-- Model-Driven of ook wel Reactive Form aanpak -->
 
+<table>
+  <th>
+    <tr>
+      <td>Naam</td>
+      <td>Score</td>
+      <td>Logo</td>
+    </tr>
+  </th>
+  <tbody>
+  <tr *ngFor="let f of frameworks">
+    <td>{{f.naam}}</td>
+    <td>{{f.score}}</td>
+    <td><img src="{{f.logoUrl}}"> </td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Web Frameworks</h3>
 <form [formGroup]="reactiveFormGroup">
   <ol>
     <li>
-      <label for="naam-input">Naam framework</label>
+      <label for="naam-input">Naam:</label>
       <input type="text" id="naam-input" formControlName="naam">
     </li>
     <li>
-      <label for="score-input">Score</label>
-      <input type="text" id="score-input" formControlName="score">
+      <label for="score-input">Score:</label>
+      <input type="number" id="score-input" formControlName="score">
     </li>
     <li>
-      <label for="logoUrl-input">Url logo</label>
+      <label for="logoUrl-input">Url logo:</label>
       <input type="text" id="logoUrl-input" formControlName="logoUrl">
     </li>
     <li>
@@ -19,4 +37,4 @@
     </li>
   </ol>
 </form>
-{{structureReactiveFormGroup | json}}
+{{structureControls | json}}

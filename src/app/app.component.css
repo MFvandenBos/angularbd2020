@@ -3,3 +3,6 @@ button {
   height: 100px;
   background-color: lightgreen;
 }
+img{
+  max-width: 100px;
+}

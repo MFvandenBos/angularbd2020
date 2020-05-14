@@ -10,7 +10,8 @@ import * as util from 'util';
 export class AppComponent {
 
   frameworks: Framework[] = [];
-  structureReactiveFormGroup: any;
+  structureValue: any;
+  structureControls: any;
 
   reactiveFormGroup = new FormGroup({
       naam: new FormControl(''),
@@ -20,6 +21,8 @@ export class AppComponent {
 
 
   addFramework() {
-      this.structureReactiveFormGroup = util.inspect(this.reactiveFormGroup.value, {depth: 1});
+      this.structureValue = util.inspect(this.reactiveFormGroup.value, {depth: 1});
+      this.structureControls = util.inspect(this.reactiveFormGroup.controls, {depth: 1});
+      this.frameworks.push(this.reactiveFormGroup.value);
   }
 }
