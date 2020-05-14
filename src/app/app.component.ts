@@ -15,9 +15,10 @@ export class AppComponent {
     {stad: 'Edam', land: 'Nederland'},
     {stad: 'Obdam', land: 'Nederland'},
   ];
+  // [] initialiseer je een array in ts/js
+  bedrag: number;
   printNaarConsole() {
     console.log('Hello Angular!');
   }
-  // [] initialiseer je een array in ts/js
 
 }

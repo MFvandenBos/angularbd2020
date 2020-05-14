@@ -8,27 +8,26 @@ registerLocaleData(localeNL, 'nl');
 
 describe('DutchEuroPipe', () => {
 
-  it('should format a whole number as is', () => {
-
-    const pipe = new DutchEuroPipe();
-
-    expect(pipe.transform(123)).toEqual('123');
-  });
 
   it('should format a whole number prefixed with an euro sign', () => {
 
     const pipe = new DutchEuroPipe();
+    // \u00A0 is een non breaking space
+    const euroSignPlusNonBreakableSpace = '€\u00A0' ;
 
-    const euroSignPlusSpace = '\u20AC' + ' ';
-
-    expect(pipe.transform(123)).toEqual(euroSignPlusSpace + '123');
+    expect(pipe.transform(123)).toEqual(euroSignPlusNonBreakableSpace + '123');
   });
 });
 
 describe('een naam voor een verzameling tests', () => {
 
-  it('een naam voor een specifieke test1' , () => {
-        // Hier kunnnen we de test uitvoeren
+  it('hoe zit dat eigenlijk met string interpolation' , () => {
+    const aValue = 'some string';
+    const n = `Code example:
+              string a = '${aValue}';`;
+
+    console.log(n);
+
   });
 
   it('een naam voor een specifieke test2' , () => {
@@ -39,4 +38,10 @@ describe('een naam voor een verzameling tests', () => {
     // Hier kunnnen we de test uitvoeren
   });
 
+});
+
+describe(' title', () => {q
+  it('title experimentje', () => {
+    console.log('Hier kunnen we onze test uitvoeren');
+  });
 });
