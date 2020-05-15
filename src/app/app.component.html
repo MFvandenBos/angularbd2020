@@ -1,22 +1,53 @@
-<p>
-  Lowercase = {{title | lowercase }}
-</p>
+<!--<p>-->
+<!--  Lowercase = {{title | lowercase }}-->
+<!--</p>-->
 
-<p>
-  Uppercase = {{title | uppercase }}
-</p>
-<p>
-  Titlecase = {{title | titlecase }}
-</p>
-<p>
-  Nu {{nu | date }}
-</p>
-<p>
-  Nu {{nu | date : 'd MMMM yyyy: HH:mm:ss'}}
-</p>
-<p>
-  Nu {{nu | date }}
-</p>
-<p>
-  Prijs in dutch euros {{bedrag | dutchEuro }}
-</p>
+<!--<p>-->
+<!--  Uppercase = {{title | uppercase }}-->
+<!--</p>-->
+<!--<p>-->
+<!--  Titlecase = {{title | titlecase }}-->
+<!--</p>-->
+<!--<p>-->
+<!--  Nu {{nu | date }}-->
+<!--</p>-->
+<!--<p>-->
+<!--  Nu {{nu | date : 'd MMMM yyyy: HH:mm:ss'}}-->
+<!--</p>-->
+<!--<p>-->
+<!--  Nu {{nu | date }}-->
+<!--</p>-->
+<!--<p>-->
+<!--  Prijs in dutch euros {{bedrag | dutchEuro }}-->
+<!--</p>-->
+
+
+<!--Model-Driven of ook wel reactive form aanpak-->
+
+<form [formGroup] = 'reactiveFormGroup'>
+  <ol>
+    <li><label for ='naam-input'>Naam framework</label>
+      <input type = 'text' Id = 'naam-input' formControlName="naam"></li>
+    <li><label for ='score-input'>score</label>
+      <input type = 'text' id = 'score-input' formControlName="score"></li>
+    <li><label for ='logoUrl-input'>url logo</label>
+      <input type = 'text' id = 'logoUrl-input' formControlName="logoUrl"></li>
+    <li>
+      <button (click)="addFramwork()">Add Framework</button>
+    </li>
+  </ol>
+</form>
+
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>score</th>
+    <th>logo</th>
+  </tr>
+  <tr *ngFor="let framework of frameworks; let i = index">
+    <td align="center">{{framework.naam}}</td>
+    <td align="center">{{framework.score}}</td>
+    <td align="center">{{framework.logoUrl}}</td>
+  </tr>
+</table>
