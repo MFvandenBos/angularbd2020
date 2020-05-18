@@ -40,7 +40,7 @@ describe('een naam voor een verzameling tests', () => {
 
 });
 
-describe(' title', () => {q
+describe(' title', () => {
   it('title experimentje', () => {
     console.log('Hier kunnen we onze test uitvoeren');
   });
