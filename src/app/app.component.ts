@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Framework} from './model/framework';
 import * as util from 'util';
 @Component({
@@ -14,9 +14,9 @@ export class AppComponent {
   structureControls: any;
 
   reactiveFormGroup = new FormGroup({
-      naam: new FormControl(''),
-      score: new FormControl(''),
-      logoUrl: new FormControl('')
+      naam: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
+      score: new FormControl('', [ Validators.min(2), Validators.max(10)]),
+      logoUrl: new FormControl('', [ Validators.required])
   });
 
 

@@ -1,8 +1,22 @@
-button {
-  width: 200px;
-  height: 100px;
-  background-color: lightgreen;
+
+button:disabled {
+  box-shadow: 0 0 10px 3px red;
+}
+
+button:enabled {
+  box-shadow: 0 0 10px 3px greenyellow;
 }
 img{
   max-width: 100px;
+}
+label {
+  float: left;
+  width: 4em;
+  margin-right: 1em;
+}
+input.ng-dirty.ng-valid {
+  background-color: lightgreen;
+}
+input.ng-dirty.ng-invalid {
+  background-color: tomato;
 }

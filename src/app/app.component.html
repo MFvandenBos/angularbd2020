@@ -23,6 +23,9 @@
     <li>
       <label for="naam-input">Naam:</label>
       <input type="text" id="naam-input" formControlName="naam">
+      <span *ngIf="reactiveFormGroup.controls.naam.touched && reactiveFormGroup.controls.naam.invalid">*</span>
+      <span *ngIf="reactiveFormGroup.controls.naam.touched && reactiveFormGroup.controls.naam.errors?.required">Dit veld is verplicht</span>
+      <span *ngIf="reactiveFormGroup.controls.naam.touched && reactiveFormGroup.controls.naam.errors?.pattern">Dit veld mag alleen letters en spaties bevatten</span>
     </li>
     <li>
       <label for="score-input">Score:</label>
@@ -33,7 +36,7 @@
       <input type="text" id="logoUrl-input" formControlName="logoUrl">
     </li>
     <li>
-      <button (click)="addFramework()">Add Framework</button>
+      <button [disabled]="reactiveFormGroup.invalid" (click)="addFramework()">Add Framework</button>
     </li>
   </ol>
 </form>
