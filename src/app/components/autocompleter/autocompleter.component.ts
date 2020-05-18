@@ -18,9 +18,11 @@ export class AutocompleterComponent implements OnInit {
   autocomplete() {
     this.results = [];
     for (const item of this.data) {
-      // for(const prop of Object.keys(item))
-      if (item.x.includes(this.query.value)) {
+      for (const prop of Object.keys(item)) {
+      if (item[prop].includes(this.query.value)) {
         this.results.push(item);
+        break;
+      }
       }
     }
   }

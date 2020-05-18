@@ -18,7 +18,7 @@ describe('AutocompleterComponent', () => {
     expect(autocompleter.results).toEqual([{x : 'hey'}]);
   });
 
-  it('should create', () => {
+  it('should filter all items containing an e in an arbitrary property', () => {
     autocompleter = new AutocompleterComponent();
     autocompleter.data = [
       {x : 'ho', y : 'hallo'},
@@ -31,5 +31,51 @@ describe('AutocompleterComponent', () => {
       {x : 'hoi',  y : 'hello'},
       {x : 'hey',  y : 'hello'}
       ]);
+  });
+
+  it('should autoComplete with case-insensitive values', () => {
+    autocompleter = new AutocompleterComponent();
+    autocompleter.data = [
+      {x : 'ho'},
+      {x : 'hei'},
+      {x : 'hEy'}
+    ];
+    autocompleter.query.setValue('e');
+    autocompleter.autocomplete();
+    expect(autocompleter.results).toEqual([
+      {x : 'hei'},
+      {x : 'hEy'}
+    ]);
+  });
+
+  it('should autoComplete with case-insensitive query value', () => {
+    autocompleter = new AutocompleterComponent();
+    autocompleter.data = [
+      {x : 'ho'},
+      {x : 'hei'},
+      {x : 'hEy'}
+    ];
+    autocompleter.query.setValue('E');
+    autocompleter.autocomplete();
+    expect(autocompleter.results).toEqual([
+      {x : 'hei'},
+      {x : 'hEy'}
+    ]);
+  });
+
+  it('should autoComplete with case-insensitive query value', () => {
+    autocompleter = new AutocompleterComponent();
+    // Remark: all these values are falsy values
+    autocompleter.data = [
+      {x : undefined},
+      {x : null},
+      {x : false}
+    ];
+    autocompleter.query.setValue('E');
+    autocompleter.autocomplete();
+    expect(autocompleter.results).toEqual([
+      {x : 'hei'},
+      {x : 'hEy'}
+    ]);
   });
 });
