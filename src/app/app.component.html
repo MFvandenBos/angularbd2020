@@ -30,14 +30,15 @@
     <li>
       <label for="score-input">Score:</label>
       <input type="number" id="score-input" formControlName="score">
+      <span *ngIf="reactiveFormGroup.controls.score.touched && reactiveFormGroup.controls.naam.invalid">*</span>
+      <span *ngIf="reactiveFormGroup.controls.score.touched && reactiveFormGroup.controls.naam.errors?.required">Dit veld is verplicht</span>
+      <!--span *ngIf="reactiveFormGroup.controls.naam.touched && reactiveFormGroup.controls.naam.errors?.pattern">Dit veld mag alleen letters en spaties bevatten</span-->
     </li>
     <li>
       <label for="logoUrl-input">Url logo:</label>
       <input type="text" id="logoUrl-input" formControlName="logoUrl">
     </li>
-    <li>
-      <button [disabled]="reactiveFormGroup.invalid" (click)="addFramework()">Add Framework</button>
-    </li>
   </ol>
+  <button [disabled]="reactiveFormGroup.invalid" (click)="addFramework()">Add Framework</button>
 </form>
 {{structureControls | json}}

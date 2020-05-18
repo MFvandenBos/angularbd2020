@@ -15,8 +15,8 @@ export class AppComponent {
 
   reactiveFormGroup = new FormGroup({
       naam: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
-      score: new FormControl('', [ Validators.min(2), Validators.max(10)]),
-      logoUrl: new FormControl('', [ Validators.required])
+      score: new FormControl('', [ Validators.required, Validators.min(2), Validators.max(10)]),
+      logoUrl: new FormControl('', [Validators.pattern('^((https?|ftp|smtp):\\/\\/)?(www.)?[a-z0-9]+\\.[a-z]+(\\/[a-zA-Z0-9#]+\\/?)*$')])
   });
 
 
