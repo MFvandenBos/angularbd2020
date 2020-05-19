@@ -18,10 +18,13 @@ export class AutocompleterComponent implements OnInit {
   autocomplete() {
     this.results = [];
     for (const item of this.data) {
-      // for(const prop of Object.keys(item))
-      if (item.x.includes(this.query.value)) {
-        this.results.push(item);
-      }
+      const Larray: string[] = Object.keys(item);
+      for (const prop of Larray) {
+        if (item[prop].includes(this.query.value)) {
+           this.results.push(item);
+           break;
+         }
+       }
     }
   }
 }
