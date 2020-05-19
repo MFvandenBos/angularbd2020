@@ -20,7 +20,7 @@ export class AutocompleterComponent implements OnInit {
     for (const item of this.data) {
       const Larray: string[] = Object.keys(item);
       for (const prop of Larray) {
-        if (item[prop].includes(this.query.value)) {
+        if (item[prop] && item[prop].includes(this.query.value)) {
            this.results.push(item);
            break;
          }
