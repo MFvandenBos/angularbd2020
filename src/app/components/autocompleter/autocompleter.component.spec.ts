@@ -2,6 +2,58 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AutocompleterComponent } from './autocompleter.component';
 
+describe('Een aantal basale javascript/typescript patronen' , () => {
+  it('Een eenvoude iteratie in ts', () => {
+    const beesten = ['slak', 'schildpad', 'haas'];
+    for (const beest of beesten) {
+      console.log(beest);
+    }
+  });
+  it('Een eenvoude iteratie met traditionele iteratie', () => {
+    const beesten = ['slak', 'schildpad', 'haas'];
+    for (let index = 0; index < beesten.length; index++) {
+      console.log(beesten[index]);
+    }
+    expect(true).toBeTruthy();
+  });
+  it('iteratie over objecten', () => {
+    const beesten = [{naam: 'slak', age: 1}, {naam: 'schildpad', age: 100}, {naam: 'haas', age: 3}];
+    for (const beest of beesten) {
+      for (const prop of Object.keys(beest)) {
+        console.log(beest[prop]);
+      }
+    }
+    expect(true).toBeTruthy();
+  });
+
+  it('runtime toevoegen van properties', () => {
+    let beest: any;
+    beest = {naam: 'slak', age: 1};
+    beest.isUitgestorven = false;
+    console.log(beest);
+    expect(true).toBeTruthy();
+  });
+
+  it('runtime verwijderen van properties', () => {
+    let beest: any;
+    beest = {naam: 'slak', age: 1};
+    beest.isUitgestorven = false;
+    console.log(beest);
+    delete beest.isUitgestorven;
+    console.log(beest);
+    expect(true).toBeTruthy();
+  });
+  it('Wat doet de modulo operator', () => {
+    const getallenReeks = [0, 1, 2, 3, 4];
+    for (const getal of getallenReeks) {
+      console.log((getal + 5) % getallenReeks.length );
+    }
+  });
+});
+
+
+
+
 describe('AutocompleterComponent', () => {
   let autocompleter: AutocompleterComponent;
 
@@ -17,6 +69,11 @@ describe('AutocompleterComponent', () => {
     autocompleter.autocomplete();
     expect(autocompleter.results).toEqual([{x : 'hey'}]);
   });
+
+
+
+
+
 
   it('should filter all items containing an e in an arbitrary property', () => {
     autocompleter = new AutocompleterComponent();
@@ -76,6 +133,7 @@ describe('AutocompleterComponent', () => {
     expect(autocompleter.results.length).toEqual(0);
   });
 
+
   it('should autocomplete on numbers', () => {
     autocompleter = new AutocompleterComponent();
     // Remark: all these values are falsy values
@@ -88,6 +146,9 @@ describe('AutocompleterComponent', () => {
     expect(autocompleter.results).toEqual( [{x : 1}]);
   });
 });
+
+// Alles hierboven is een opdracht
+// Hieronder is voor liefhebbers en op dit moment optioneel
 
 describe(' Navigating through the result list ', () => {
   it('When entering the value in an input box the first matching entry should be highlighted', () => {
@@ -104,7 +165,7 @@ describe(' Navigating through the result list ', () => {
 
     // Act
     autocompleter.next();
-    expect(autocompleter.results[0].highlight).toBe(true);
+    expect(autocompleter.results[0].highlight).toBeTruthy();
   });
 
   it('Should navigate from the highlighted item to the next', () => {

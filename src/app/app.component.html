@@ -16,6 +16,11 @@
   </tbody>
 </table>
 
+<h3>De autocompleter</h3>
+<app-autocompleter [data]="frameworks"
+                   [displayPropery]="propertyToDisplay"
+                    (itemSelected)="eventFired($event)"
+></app-autocompleter>
 
 <h3>Web Frameworks</h3>
 <form [formGroup]="reactiveFormGroup">

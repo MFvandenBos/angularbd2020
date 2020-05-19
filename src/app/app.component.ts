@@ -33,6 +33,7 @@ export class AppComponent {
       score: new FormControl('', [ Validators.min(2), Validators.max(10)]),
       logoUrl: new FormControl('', [ Validators.required])
   });
+  propertyToDisplay = 'naam';
 
   addFramework() {
       this.structureValue = util.inspect(this.reactiveFormGroup.value, {depth: 1});
@@ -40,7 +41,7 @@ export class AppComponent {
       this.frameworks.push(this.reactiveFormGroup.value);
   }
 
-  itemSelected(item: any) {
-    console.log(item);
+  eventFired(itemSelected: any) {
+    console.log(itemSelected);
   }
 }
