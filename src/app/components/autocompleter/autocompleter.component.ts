@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 @Component({
@@ -10,7 +10,9 @@ export class AutocompleterComponent implements OnInit {
   query: FormControl = new FormControl();
   @Input() data: any[];
   results: any[];
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -19,11 +21,15 @@ export class AutocompleterComponent implements OnInit {
     this.results = [];
     for (const item of this.data) {
       for (const prop of Object.keys(item)) {
-      if (item[prop].includes(this.query.value)) {
-        this.results.push(item);
-        break;
-      }
+        if (item[prop].includes(this.query.value)) {
+          this.results.push(item);
+          break;
+        }
       }
     }
+  }
+
+  next() {
+
   }
 }
