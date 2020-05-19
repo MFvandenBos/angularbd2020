@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AutocompleterComponent } from './autocompleter.component';
+import {HighlighterService} from '../../services/highlighter.service';
 
 describe('Een aantal basale javascript/typescript patronen' , () => {
   it('Een eenvoude iteratie in ts', () => {
@@ -55,11 +56,10 @@ describe('Een aantal basale javascript/typescript patronen' , () => {
 
 
 describe('AutocompleterComponent', () => {
-  let autocompleter: AutocompleterComponent;
+  const autocompleter = new AutocompleterComponent(new HighlighterService());
 
 
   it('should filter all items containing an e', () => {
-    autocompleter = new AutocompleterComponent();
     autocompleter.data = [
       {x : 'ho'},
       {x : 'hoi'},
@@ -70,13 +70,7 @@ describe('AutocompleterComponent', () => {
     expect(autocompleter.results).toEqual([{x : 'hey'}]);
   });
 
-
-
-
-
-
   it('should filter all items containing an e in an arbitrary property', () => {
-    autocompleter = new AutocompleterComponent();
     autocompleter.data = [
       {x : 'ho', y : 'hallo'},
       {x : 'hoi',  y : 'hello'},
@@ -91,7 +85,6 @@ describe('AutocompleterComponent', () => {
   });
 
   it('should autoComplete with case-insensitive values', () => {
-    autocompleter = new AutocompleterComponent();
     autocompleter.data = [
       {x : 'ho'},
       {x : 'hei'},
@@ -106,7 +99,6 @@ describe('AutocompleterComponent', () => {
   });
 
   it('should autoComplete with case-insensitive query value', () => {
-    autocompleter = new AutocompleterComponent();
     autocompleter.data = [
       {x : 'ho'},
       {x : 'hei'},
@@ -121,7 +113,6 @@ describe('AutocompleterComponent', () => {
   });
 
   it('should ignore falsy values', () => {
-    autocompleter = new AutocompleterComponent();
     // Remark: all these values are falsy values
     autocompleter.data = [
       {x : undefined},
@@ -135,7 +126,6 @@ describe('AutocompleterComponent', () => {
 
 
   it('should autocomplete on numbers', () => {
-    autocompleter = new AutocompleterComponent();
     // Remark: all these values are falsy values
     autocompleter.data = [
       {x : 1},
@@ -147,66 +137,3 @@ describe('AutocompleterComponent', () => {
   });
 });
 
-// Alles hierboven is een opdracht
-// Hieronder is voor liefhebbers en op dit moment optioneel
-
-describe(' Navigating through the result list ', () => {
-  it('When entering the value in an input box the first matching entry should be highlighted', () => {
-    // setup The A van Arrange (klaar zetten.)
-    // Black box approach, we don't assume any knowledge of the component
-    const autocompleter = new AutocompleterComponent();
-    autocompleter.data = [
-      {x : 'ho'},
-      {x : 'hei'},
-      {x : 'hEy'}
-    ];
-    autocompleter.query.setValue('e');
-    autocompleter.autocomplete();
-
-    // Act
-    autocompleter.next();
-    expect(autocompleter.results[0].highlight).toBeTruthy();
-  });
-
-  it('Should navigate from the highlighted item to the next', () => {
-    // setup The A van Arrange (klaar zetten.)
-    // Black box approach, we don't assume any knowledge of the component
-    const autocompleter = new AutocompleterComponent();
-    autocompleter.data = [
-      {x : 'ho'},
-      {x : 'hei'},
-      {x : 'hEy'}
-    ];
-    autocompleter.query.setValue('e');
-    autocompleter.autocomplete();
-    autocompleter.next();
-    // Act
-    autocompleter.next();
-    expect(autocompleter.results[0].highlight).toBe(undefined);
-    expect(autocompleter.results[1].highlight).toBe(true);
-  });
-
-  it('Should navigate from the highlighted from the last highlighted item to the first', () => {
-    // setup The A van Arrange (klaar zetten.)
-    // Black box approach, we don't assume any knowledge of the component
-    const autocompleter = new AutocompleterComponent();
-    autocompleter.data = [
-      {x : 'ho'},
-      {x : 'hei'},
-      {x : 'hEy'}
-    ];
-    autocompleter.query.setValue('e');
-    autocompleter.autocomplete();
-    for (const result of autocompleter.results) {
-      autocompleter.next();
-    }
-    // Check the assumptions
-    expect(autocompleter.results[0].highlight).toBe(undefined);
-    expect(autocompleter.results[autocompleter.results.length - 1].highlight).toBe(true);
-    // Act
-    autocompleter.next();
-    expect(autocompleter.results[0].highlight).toBe(true);
-    expect(autocompleter.results[autocompleter.results.length - 1].highlight).toBe(undefined);
-  });
-
-});

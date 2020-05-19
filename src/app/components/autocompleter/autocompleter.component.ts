@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {HighlighterService} from '../../services/highlighter.service';
 
 @Component({
   selector: 'app-autocompleter',
@@ -10,10 +11,22 @@ export class AutocompleterComponent implements OnInit {
   query = new FormControl();
   @Input() data: any[];
   results: any[];
-  @Input() displayPropery: string;
+  @Input() displayProperty: string;
   @Output() itemSelected = new EventEmitter();
 
-  constructor() {
+  // highlighterService: HighlighterService;
+  // De constructor is de plek waar je service binnenhaalt
+  // constructor(highlighterService: HighlighterService) {
+  //   this.highlighterService = highlighterService;
+  // }
+
+  constructor(private highlighterService: HighlighterService) {
+    // this.highlighterService = highlighterService;
+    // de constructor wordt in Angular alleen gebruikt om services
+    // binnen te halen. Die services worden vaak dependencies van onze
+    // component.
+    // Vandaar ook dat dit ook wel dependency injection wordt genoemd
+
   }
 
   ngOnInit() {
@@ -32,17 +45,7 @@ export class AutocompleterComponent implements OnInit {
   }
 
   next() {
-    // Zoek in array van resultaten naar het het item met de highlight property
-    // Haal daar de property highlight weg
-    // Plaats de de property highlight op het daarop volgende item
-    for (let index = 0; index < this.results.length; index++) {
-      if (this.results[index].highlight) {
-        delete this.results[index].highlight;
-        this.results[(index + 1) % this.results.length ].highlight = true;
-        return;
-      }
-    }
-    this.results[0].highlight = true;
+      this.highlighterService.next(this.results);
   }
 
   select() {
